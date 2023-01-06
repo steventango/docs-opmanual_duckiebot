@@ -95,7 +95,7 @@ For VMWare, install the package `open-vm-tools`:
 
     laptop $ sudo apt install open-vm-tools
 
-## Setting up Mac OS X {#laptop-setup-mac}
+## Setting up macOS Ventura 13.0.1 (22A400) {#laptop-setup-mac}
 
 Warning: this configuration is not officially supported. There might be problems with implementation. We strongly urge you to use Ubuntu 20.04 enviornment.
 
@@ -119,10 +119,11 @@ After installing XQuartz, run it in the command line with:
 
 Go to "Preferences" and in the "Security" tab make sure that the checkbox next to "Allow connections from network clients" is set. Now close XQuartz.
 
-You may want to add the following lines to your `.bashrc` file:
+You may want to add the following lines to your `.zshrc` file:
 
-    export IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-    xhost +$IP
+    export DISPLAY=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+    export DISPLAY=$DISPLAY:0
+    xhost +
 
 Note: You may also need to add `/usr/X11/bin` to your system path in order for it to find `xhost`.
 
